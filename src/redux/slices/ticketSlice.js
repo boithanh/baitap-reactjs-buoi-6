@@ -1,16 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
-    hoTen: "Bành Bối Thạnh"
+    soGhe: "",
+    gia: 0,
+    daDat: false,
+    tongTien: 0,
+    huy: "",
 
 }
 
 const ticketSlice = createSlice({
     name: "name",
     initialState,
-    reducers: {}
+    reducers: {
+        datVe: (state, action) => {
+            const { soGhe, gia, huy } = action.payload;
+            state.soGhe = soGhe;
+            state.gia = gia
+            state.tongTien += gia;
+            state.huy = huy;
+        },
+    }
 });
 
-export const { } = ticketSlice.actions
+export const { datVe, trangThaiGhe } = ticketSlice.actions
 
 export default ticketSlice.reducer

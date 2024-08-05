@@ -16,6 +16,10 @@ const HomeTemplate = () => {
                 style={{
                     display: 'flex',
                     alignItems: 'center',
+                    position: 'absolute',
+                    width: '100%',
+                    top: '0',
+                    background: 'rgba(0,0,0,0.8)'
                 }}
             >
                 <div className="demo-logo" />
@@ -27,6 +31,7 @@ const HomeTemplate = () => {
                     style={{
                         flex: 1,
                         minWidth: 0,
+                        background: 'rgba(0,0,0,0.8)'
                     }}
                 />
             </Header>

@@ -6,7 +6,9 @@ export default {
   ],
   theme: {
     container: {
-      center: true
+      center: true,
+      padding: 0,
+      margin: 0
     },
     extend: {},
   },
