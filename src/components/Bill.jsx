@@ -1,11 +1,34 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import ticketSlice from '../redux/slices/ticketSlice';
 
-const Bill = () => {
-    const { soGhe, gia, tongTien, huy } = useSelector((state) => state.ticketSlice);
-    console.log(tongTien);
+const Bill = ({ arrTable, setValue }) => {
+    const { tongTien } = useSelector((state) => state.ticketSlice);
+    const dispatch = useDispatch;
+    // console.log(arrTable);
+    const deleteSeat = (_soGhe) => {
+        var newArrTable = [...arrTable];
+        const index = newArrTable.findIndex((item, index) => item.soGhe == _soGhe)
+        if (index != -1) {
+            newArrTable.splice(index, 1)
+            console.log(newArrTable);
+            setValue(newArrTable);
+        } else {
+            alert("có lỗi xảy ra vui lòng thử lại")
+        }
+    }
+
+    function tinhTien() {
+        var newArrTable = [...arrTable];
+        let t = 0;
+        newArrTable.map((item, index) => {
+            t += item.gia;
+        })
+        return t;
+    }
+
     return (
-        <div>
+        <div className='list-item'>
             <h1 className='mb-3 text-white'>Danh sách ghế bạn chọn</h1>
             <ul>
                 <li className='text-white'>
@@ -29,21 +52,34 @@ const Bill = () => {
                             <th>Giá</th>
                             <th>Hủy</th>
                         </tr>
-                        <tr>
-                            <td>{soGhe}</td>
-                            <td>{gia.toLocaleString("vi", {
-                                style: "currency",
-                                currency: "VND",
-                            })}</td>
-                            <td className='text-center'><button className='py-2 px-4 bg-white text-black rounded-full hover:bg-black hover:text-red-600 duration-500' onClick={() => { alert("Tính năng đang được phát triển, Comming Soon ^^ ") }}>{huy}</button></td>
-                        </tr>
+                        {
+                            arrTable.map((item, index) => {
+                                let { soGhe, gia } = item;
+                                let tongTien = 0;
+                                tongTien += gia;
+                                return (
+                                    <>
+                                        <tr key={index}>
+                                            <td>{soGhe}</td>
+                                            <td>{gia.toLocaleString("vi", {
+                                                style: "currency",
+                                                currency: "VND",
+                                            })}</td>
+                                            <td className='text-center'><button className='py-1 px-4 bg-white text-black rounded-full hover:bg-black hover:text-red-600 duration-500 my-1' onClick={() => { deleteSeat(soGhe) }}>x</button></td>
+                                        </tr>
+                                    </>
+                                )
+                            })
+                        }
+
                         <tr>
                             <td>Tổng Tiền</td>
-                            <td colSpan={2}>{tongTien.toLocaleString("vi", {
+                            <td colSpan={2}>{tinhTien().toLocaleString("vi", {
                                 style: "currency",
                                 currency: "VND",
                             })}</td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>

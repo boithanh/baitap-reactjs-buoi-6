@@ -11,7 +11,7 @@ const HomeTemplate = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
     return (
-        <Layout className="min-h-screen">
+        <Layout>
             <Header
                 style={{
                     display: 'flex',

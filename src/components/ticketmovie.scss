@@ -4,7 +4,7 @@
 }
 
 .bookingMovie {
-    background-image: linear-gradient(to bottom, black, hsl(30deg 100% 1% / 20%)), url(../assets/img/bgmovie.jpg);
+    background-image: linear-gradient(to right, #5B52A3, hsl(30deg 100% 1% / 40%)), url(../assets/img/bgmovie.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
@@ -37,6 +37,34 @@
             width: 45px;
             height: 35px;
         }
+    }
+
+
+    .list-item {
+        .gheDangChon {
+            &:hover {
+                background: rgb(109, 238, 109) !important;
+                border: transparent !important;
+                cursor: text;
+            }
+        }
+
+        .gheDuocChon {
+            &:hover {
+                background: orange !important;
+                border: transparent !important;
+                cursor: text !important;
+            }
+        }
+
+        .ghe {
+            &:hover {
+                background: white;
+                border: 3px solid orange;
+                cursor: text !important;
+            }
+        }
+
     }
 
     .cot {
@@ -114,13 +142,22 @@
     table {
         @apply border table-fixed w-96 h-40 my-5;
 
+        button {
+            @apply text-xs
+        }
+
         td,
         th {
             @apply border;
+
         }
 
         th {
             @apply bg-white;
+        }
+
+        td {
+            @apply text-white;
         }
     }
 }

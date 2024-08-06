@@ -4,16 +4,23 @@ import arrSeat from '../assets/data/danhSachGhe.json';
 import Bill from './Bill';
 import { useDispatch, useSelector } from 'react-redux';
 import { datVe } from './../redux/slices/ticketSlice'
+import { Table } from 'antd';
 
 const TicketMovie = () => {
     const { soGhe, daDat } = useSelector((state) => state.ticketSlice);
     const dispatch = useDispatch();
+    const [arrTable, setArrTable] = useState([]);
+    function setValue(value) {
+        setArrTable(value);
+    }
     function renderCol() {
         return arrSeat.map((item, index) => {
             let { hang } = item
             if (hang) {
                 return (
-                    <p className="cot colNumber">{hang}</p>
+                    <div key={index}>
+                        <p className="cot colNumber">{hang}</p>
+                    </div>
                 )
 
             }
@@ -44,11 +51,11 @@ const TicketMovie = () => {
                     danhSachGhe.map(ghe => (
                         <button key={ghe.soGhe} className={`ghe text-black bg-white ${ghe.daDat && 'gheDuocChon'}`} onClick={() => {
                             dispatch(datVe({ soGhe: ghe.soGhe, gia: ghe.gia, huy: "X" }));
+                            (!ghe.daDat && ghe.gia != 0 && ghe.soGhe != soGhe) && arrTable.push(ghe);
                         }}>
                             {ghe.soGhe}
                         </button>
                     ))
-
                 );
             }
         });
@@ -68,7 +75,7 @@ const TicketMovie = () => {
                     </div>
                 </div>
                 <div className='w-4/12'>
-                    <Bill arrSeat={arrSeat} />
+                    <Bill arrTable={arrTable} setValue={setValue} />
                 </div>
             </div>
         </div>
