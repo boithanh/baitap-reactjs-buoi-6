@@ -49,7 +49,7 @@ const TicketMovie = () => {
                 return (
 
                     danhSachGhe.map(ghe => (
-                        <button key={ghe.soGhe} className={`ghe text-black bg-white ${ghe.daDat && 'gheDuocChon'}`} onClick={() => {
+                        <button key={ghe.soGhe} className={`ghe text-black bg-white  ${ghe.daDat && 'gheDuocChon'}`} onClick={() => {
                             dispatch(datVe({ soGhe: ghe.soGhe, gia: ghe.gia, huy: "X" }));
                             (!ghe.daDat && ghe.gia != 0 && ghe.soGhe != soGhe) && arrTable.push(ghe);
                         }}>
@@ -67,10 +67,10 @@ const TicketMovie = () => {
                 <div className='w-8/12 text-center'>
                     <h1 className='mb-3'>Đặt vé xem phim</h1>
                     <div className="screen mx-auto mb-3"></div>
-                    <div className='scren mx-auto mb-3'>{renderRow()}</div>
+                    <div className='scren mx-auto mb-3 animate-pulse'>{renderRow()}</div>
 
                     <div className='flex justify-start mb-3'>
-                        <div className='w-1/12'> {renderCol()}</div>
+                        <div className='w-1/12 animate-pulse'> {renderCol()}</div>
                         <div className='w-11/12 -translate-x-10'>{renderSeat()}</div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@ const Bill = ({ arrTable, setValue }) => {
                 </li>
             </ul>
             <div>
-                <table className='text-center'>
+                <table className='text-center animate-pulse'>
                     <tbody>
                         <tr>
                             <th>Số Ghế</th>
